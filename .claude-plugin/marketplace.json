@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "flowmax-ops-skills",
+  "owner": {
+    "name": "Flowmax",
+    "email": "ops@flowmax.ai"
+  },
+  "metadata": {
+    "description": "Flowmax 经营驾驶舱与复盘 skills"
+  },
+  "plugins": [
+    {
+      "name": "flowmax-ops-skills",
+      "source": "./",
+      "description": "Flowmax 经营驾驶舱与复盘 skills",
+      "version": "0.1.0"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "flowmax-ops-skills",
+  "version": "0.1.0",
+  "description": "Flowmax 经营驾驶舱与复盘 skills：调取交易员决策/订单/仓位/权益做复盘，查看平台经营数据（用户/Agent/Credit/邀请码）。",
+  "author": {
+    "name": "Flowmax",
+    "email": "ops@flowmax.ai"
+  },
+  "skills": ["./skills/"]
+}
