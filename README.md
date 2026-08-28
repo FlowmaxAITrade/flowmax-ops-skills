@@ -37,6 +37,8 @@ claude mcp add flowmax-ops --scope user \
 
 安装后即可在任意目录用上面 5 个斜杠命令。
 
+> 经 marketplace 安装后，插件的**完整名**是 `flowmax-ops-skills@flowmax-ops-skills`（`插件名@marketplace名`）。下面「更新」和 `uninstall` 都要用这个完整名。
+
 ## 开发
 
 本地验证插件结构：
@@ -56,9 +58,11 @@ claude plugin validate --strict .
 claude plugin tag --push          # 或先 --dry-run 预览
 ```
 
-3. 用户侧更新到最新版本：
+3. 用户侧更新到最新版本（`update` 是 `claude plugin` 的 CLI 命令，不是斜杠命令；用完整名）：
 
+```bash
+claude plugin update flowmax-ops-skills@flowmax-ops-skills
 ```
-/plugin update flowmax-ops-skills
-```
+
+更新后需重启 Claude Code 生效。
 
