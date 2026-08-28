@@ -23,10 +23,10 @@ description: 复盘某时间段所有交易员的全局表现——谁决策最�
 
 ## 输出（Markdown 复盘报告）
 
-- **整体画像**：决策总数、成功/失败/降级/运行中分布、成功率
+- **整体画像**：决策总数、created/skipped/execution_failed 分布、成功率（created 占比）
 - **活跃度排行**：各交易员决策次数排序
 - **绩效排行**：净盈亏 / 收益率 / 胜率（从 trader_stats 的排行榜取）
 - **标的分布**：哪些 symbol 被频繁操作、集中度
-- **异常轮次**：失败/降级的轮次清单（round_id + 交易员 + 状态），供后续 `review-round` 深入
+- **异常轮次**：skipped/execution_failed 的轮次清单（round_id + 交易员 + 状态），供后续 `review-round` 深入
 
 标注统计口径（时间窗、账户类型），避免误导。

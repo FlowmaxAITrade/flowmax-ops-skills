@@ -13,17 +13,17 @@ description: 排查失败或异常的决策轮次，归类失败原因。当用�
 
 ## 步骤
 
-1. **拉失败轮次**：调 `mcp__flowmax-ops__search_decisions`，`status` 传 `failed`（如需降级成功也传 `degraded_success` 单独查）。时间窗按用户要求。
+1. **拉异常轮次**：调 `mcp__flowmax-ops__search_decisions`，`status` 传 `execution_failed`（执行失败）；跳过（HOLD/风控兜底）用 `status` 传 `skipped` 单独查。时间窗按用户要求。
 
-2. **逐个深入**：对每个失败 round，调 `mcp__flowmax-ops__get_round`（`pm_id` + `round_id`），重点看 `events` 时间线，定位是卡在研究失败（RESEARCH_FAILED/RESEARCH_TIMEOUT）、处理失败（PROCESS_FAILED）、还是整体失败（ROUND_FAILED）。
+2. **逐个深入**：对每个异常 round，调 `mcp__flowmax-ops__get_round`（`pm_id` + `round_id`），看 `message` 字段定位原因：`PM Decision skipped:*`（读 message 里的跳过原因）、`Decision execution failed: ...`（读报错）。
 
 3. **归类**：把失败原因分组（如「研究超时」「执行异常」「上游不可用」）。
 
 ## 输出（Markdown 排查报告）
 
-- **失败概况**：失败总数、涉及交易员、时间分布
-- **逐条清单**：每条含交易员、round_id、失败阶段、失败事件、简短说明
-- **根因归类**：按失败阶段/原因聚合，标出高发类型
+- **异常概况**：异常轮次总数、涉及交易员、时间分布
+- **逐条清单**：每条含交易员、round_id、状态（skipped/execution_failed）、message 摘要
+- **根因归类**：按原因聚合（跳过原因 / 执行错误），标出高发类型
 - **建议**：指向最值得深入复盘的几轮（给 round_id，方便用 `review-round`）
 
 只陈述有据可查的事实，原因不明确就写「未知/需进一步排查」，不要归因。
