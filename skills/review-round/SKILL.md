@@ -20,6 +20,22 @@ description: 复盘单轮决策的完整链路——研究→决策→下单→�
    - `message`：决策日志 message（`PM Decision created` / `PM Decision skipped:*` / `Decision execution failed:*`），据此判定结果
    - `orders` / `positions` / `equity`：该轮实际执行的订单、仓位变化、权益快照
 
+## 大响应处理
+
+`get_round` 单轮可能返回较大（完整 decision + orders + positions + equity）。若结果超过 token 上限，会提示 `exceeds maximum allowed tokens` 并存到文件（路径在提示里）。此时**不要整读文件**，用 `jq` 定向取字段：
+
+```bash
+F=<提示里给出的文件路径>
+jq -r '.status, .message' "$F"                        # 状态 + 判定 message
+jq -c '.decision.attrs.structuredDecision' "$F"       # 下单指令 / 仓位动作
+jq -c '.decision.attrs.overallReasoning' "$F"         # 决策理由摘要
+jq -c '[.orders[] | {symbol,side,status,action_type}]' "$F"
+jq -c '[.positions[] | {symbol,side,status,size,net_realized_pnl}]' "$F"
+jq -r '.equity[0].equity, .equity[-1].equity' "$F"    # 权益起止
+```
+
+只取分析需要的字段，不要整段输出，避免撑爆上下文。
+
 ## 输出（Markdown 复盘报告）
 
 - **基本信息**：交易员、round_id、最终状态（created/skipped/execution_failed）

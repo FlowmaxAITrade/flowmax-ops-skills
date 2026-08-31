@@ -13,7 +13,7 @@
       "name": "flowmax-ops-skills",
       "source": "./",
       "description": "Flowmax 经营驾驶舱与复盘 skills",
-      "version": "0.2.0"
+      "version": "0.2.1"
     }
   ]
 }
