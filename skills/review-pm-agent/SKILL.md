@@ -1,11 +1,11 @@
 ---
-name: review-trader
-description: 复盘单个 PM 交易员的整体表现——收益、胜率、决策风格、最近动作。当用户要求「复盘某个交易员/PM」「某某最近表现如何」「分析某个基金经理」时使用。
+name: review-pm-agent
+description: 复盘单个 PM agent 的整体表现——收益、胜率、决策风格、最近动作。当用户要求「复盘某个 PM agent」「某某最近表现如何」「分析某个基金经理」时使用。
 ---
 
-# 复盘交易员
+# 复盘 PM agent
 
-复盘一个 PM 交易员在某段时间内的整体表现。
+复盘一个 PM agent 在某段时间内的整体表现。
 
 ## 前置
 
@@ -13,9 +13,9 @@ description: 复盘单个 PM 交易员的整体表现——收益、胜率、决
 
 ## 步骤
 
-1. **确定交易员 ID**：若用户给的是名字/关键词而非 ID，先调 `mcp__flowmax-ops__list_traders`（传 `q`）找到对应 PM 的 `id`。找不到就如实告知并列出近似结果让用户确认。
+1. **确定 PM agent ID**：若用户给的是名字/关键词而非 ID，先调 `mcp__flowmax-ops__list_pm_agents`（传 `q`）找到对应 PM 的 `id`。找不到就如实告知并列出近似结果让用户确认。
 
-2. **拉绩效**：调 `mcp__flowmax-ops__trader_stats`（`account_type`、`period_unit` 按需）。提取该交易员的净盈亏、收益率、胜率、已平仓数。
+2. **拉绩效**：调 `mcp__flowmax-ops__pm_agent_stats`（`account_type`、`period_unit` 按需）。提取该 PM agent 的净盈亏、收益率、胜率、已平仓数。
 
 3. **拉动作流水**（时间窗按用户要求，默认近 7 天）：
    - `mcp__flowmax-ops__list_orders`（`pm_id`）

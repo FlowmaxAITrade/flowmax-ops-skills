@@ -4,11 +4,13 @@ Flowmax 内部「经营驾驶舱 + 复盘」的 Claude Code 插件，给老板/�
 
 本插件只是**编排层**，真正的数据来自 MCP server **[`flowmax-ops-mcp`](https://github.com/FlowmaxAITrade/flowmax-ops-mcp)**。
 
+> **说明**：底层实体是 PM agent（非 trader），skill 已改名 `review-pm-agent`。后续底层路径将迁移到 `/api/v1/reporting/*`，权威约定见 ai-trading-ops-be 仓库的 `docs/api-conventions.md`。
+
 ## 技能列表
 
 | 技能 | 用法 | 作用 |
 |---|---|---|
-| `review-trader` | `/review-trader <id或名字>` | 复盘单个 PM 交易员（收益/胜率/决策风格/最近动作） |
+| `review-pm-agent` | `/review-pm-agent <id或名字>` | 复盘单个 PM agent（收益/胜率/决策风格/最近动作） |
 | `review-round` | `/review-round <id> <round_id>` | 复盘单轮决策完整链路 |
 | `review-period` | `/review-period <时间窗>` | 全局周期复盘（谁最活跃、成功率、标的分布、异常） |
 | `review-incident` | `/review-incident` | 排查失败/异常决策并归类根因 |

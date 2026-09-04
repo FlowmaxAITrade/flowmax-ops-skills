@@ -17,15 +17,15 @@ description: 复盘某时间段所有交易员的全局表现——谁决策最�
 
 2. **拉全局决策**：调 `mcp__flowmax-ops__search_decisions`（传 `start`/`end`，不传 `pm_id`）。可能需要翻页（`page`）取全。
 
-3. **拉目录**：调 `mcp__flowmax-ops__list_traders` 拿到交易员名单（名称/交易所/标的）。
+3. **拉目录**：调 `mcp__flowmax-ops__list_pm_agents` 拿到交易员名单（名称/交易所/标的）。
 
-4. **拉绩效**：调 `mcp__flowmax-ops__trader_stats`（`period_unit` 按时间窗长度选 day/week/month）。
+4. **拉绩效**：调 `mcp__flowmax-ops__pm_agent_stats`（`period_unit` 按时间窗长度选 day/week/month）。
 
 ## 输出（Markdown 复盘报告）
 
 - **整体画像**：决策总数、created/skipped/execution_failed 分布、成功率（created 占比）
 - **活跃度排行**：各交易员决策次数排序
-- **绩效排行**：净盈亏 / 收益率 / 胜率（从 trader_stats 的排行榜取）
+- **绩效排行**：净盈亏 / 收益率 / 胜率（从 pm_agent_stats 的排行榜取）
 - **标的分布**：哪些 symbol 被频繁操作、集中度
 - **异常轮次**：skipped/execution_failed 的轮次清单（round_id + 交易员 + 状态），供后续 `review-round` 深入
 
