@@ -12,7 +12,7 @@ Flowmax 内部「经营驾驶舱 + 复盘」的 Claude Code 插件，给老板/�
 |---|---|---|
 | `review-pm-agent` | `/review-pm-agent <id或名字>` | 复盘单个 PM agent（收益/胜率/决策风格/最近动作） |
 | `review-round` | `/review-round <id> <round_id>` | 复盘单轮决策完整链路 |
-| `review-period` | `/review-period <时间窗>` | 全局周期复盘（谁最活跃、成功率、标的分布、异常） |
+| `review-period` | `/review-period <时间窗>` | 全局周期复盘（谁最活跃、成功率、标的分布、交易额/手续费/回撤、异常） |
 | `review-incident` | `/review-incident` | 排查失败/异常决策并归类根因 |
 | `ops-overview` | `/ops-overview` | 经营大盘（用户/Agent/Credit/邀请码） |
 
