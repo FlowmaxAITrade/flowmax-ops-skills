@@ -15,18 +15,30 @@ Flowmax 内部「经营驾驶舱 + 复盘」的 Claude Code 插件，给老板/�
 | `review-period` | `/review-period <时间窗>` | 全局周期复盘（谁最活跃、成功率、标的分布、交易额/手续费/回撤、异常） |
 | `review-incident` | `/review-incident` | 排查失败/异常决策并归类根因 |
 | `ops-overview` | `/ops-overview` | 经营大盘（用户/Agent/Credit/邀请码） |
+| `ops-mcp-setup` | `/ops-mcp-setup` | 安装/配置/更新 flowmax-ops-mcp |
 
 ## 前置
 
-先安装并配置 MCP server，**server 名必须是 `flowmax-ops`**（技能里按这个名字引用工具）：
+先安装并配置 MCP server，**server 名必须是 `flowmax-ops`**（技能里按这个名字引用工具）。完整步骤（含更新与排障）见 `/ops-mcp-setup`：
 
 ```bash
-# 下载 flowmax-ops-mcp 二进制（见其 Releases），然后：
+# 安装二进制（go install 或下载 Releases），然后：
 claude mcp add flowmax-ops --scope user \
-  --env OPS_BE_BASE_URL=<占位> \
-  --env OPS_API_KEY=<占位> \
+  --env OPS_BE_BASE_URL=<ops-be 地址> \
+  --env OPS_API_KEY=<fmx_* operator key> \
   -- /path/to/flowmax-ops-mcp
 ```
+
+> `OPS_API_KEY` 填运营后台「API Keys」页生成的 `fmx_*` key（只显示一次），不是全局静态 key。
+
+## 更新 MCP
+
+更新 flowmax-ops-mcp 到最新版（新功能/修复需更新二进制后重启 Claude Code）：
+
+- **go install**：`GOPROXY=https://goproxy.cn,direct go install github.com/FlowmaxAITrade/flowmax-ops-mcp/cmd/flowmax-ops-mcp@latest`
+- **预编译二进制**：下载最新 [Release](https://github.com/FlowmaxAITrade/flowmax-ops-mcp/releases) 覆盖旧路径
+
+完整步骤与排障见 `/ops-mcp-setup`。
 
 ## 安装
 
@@ -37,7 +49,7 @@ claude mcp add flowmax-ops --scope user \
 /plugin install flowmax-ops-skills
 ```
 
-安装后即可在任意目录用上面 5 个斜杠命令。
+安装后即可在任意目录用上面 6 个斜杠命令。
 
 > 经 marketplace 安装后，插件的**完整名**是 `flowmax-ops-skills@flowmax-ops-skills`（`插件名@marketplace名`）。下面「更新」和 `uninstall` 都要用这个完整名。
 
