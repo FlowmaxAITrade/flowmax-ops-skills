@@ -9,13 +9,13 @@ description: 排查失败或异常的决策轮次，归类失败原因。当用�
 
 ## 前置
 
-依赖 MCP server **`flowmax-ops`**。工具用全限定名 `mcp__flowmax-ops__<tool>`。
+依赖 MCP server **`timon`**。工具用全限定名 `mcp__timon__<tool>`。
 
 ## 步骤
 
-1. **拉异常轮次**：调 `mcp__flowmax-ops__search_decisions`，`status` 传 `execution_failed`（执行失败）；跳过（HOLD/风控兜底）用 `status` 传 `skipped` 单独查。时间窗按用户要求。
+1. **拉异常轮次**：调 `mcp__timon__search_decisions`，`status` 传 `execution_failed`（执行失败）；跳过（HOLD/风控兜底）用 `status` 传 `skipped` 单独查。时间窗按用户要求。
 
-2. **逐个深入**：对每个异常 round，调 `mcp__flowmax-ops__get_round`（`pm_id` + `round_id`），看 `message` 字段定位原因：`PM Decision skipped:*`（读 message 里的跳过原因）、`Decision execution failed: ...`（读报错）。
+2. **逐个深入**：对每个异常 round，调 `mcp__timon__get_round`（`pm_id` + `round_id`），看 `message` 字段定位原因：`PM Decision skipped:*`（读 message 里的跳过原因）、`Decision execution failed: ...`（读报错）。
 
 3. **归类**：把失败原因分组（如「研究超时」「执行异常」「上游不可用」）。
 

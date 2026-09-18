@@ -9,15 +9,15 @@ description: 输出平台经营大盘——用户数、Agent 数、近 7 天活�
 
 ## 前置
 
-依赖 MCP server **`flowmax-ops`**。工具用全限定名 `mcp__flowmax-ops__<tool>`。
+依赖 MCP server **`timon`**。工具用全限定名 `mcp__timon__<tool>`。
 
 ## 步骤
 
-1. 调 `mcp__flowmax-ops__ops_overview`，拿用户/Agent/昨日决策/近 7 天活跃/创建 Agent 转化率/邀请码使用率。
+1. 调 `mcp__timon__ops_overview`，拿用户/Agent/昨日决策/近 7 天活跃/创建 Agent 转化率/邀请码使用率。
 
-2. 调 `mcp__flowmax-ops__credit_summary`（可选 `start`/`end` 时间窗），拿 Credit 按类型汇总。
+2. 调 `mcp__timon__credit_summary`（可选 `start`/`end` 时间窗），拿 Credit 按类型汇总。
 
-3. 按需补充：`mcp__flowmax-ops__list_users`（最近注册）、`mcp__flowmax-ops__list_invite_codes`（邀请码状态）。
+3. 按需补充：`mcp__timon__list_users`（最近注册）、`mcp__timon__list_invite_codes`（邀请码状态）。
 
 ## 输出（Markdown 大盘报告）
 

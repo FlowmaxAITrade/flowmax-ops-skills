@@ -9,20 +9,20 @@ description: 复盘单个 PM agent 的整体表现——收益、胜率、决策
 
 ## 前置
 
-依赖 MCP server **`flowmax-ops`**（`claude mcp add flowmax-ops ...` 已配好）。工具用全限定名 `mcp__flowmax-ops__<tool>` 调用。
+依赖 MCP server **`timon`**（`claude mcp add timon ...` 已配好）。工具用全限定名 `mcp__timon__<tool>` 调用。
 
 ## 步骤
 
-1. **确定 PM agent ID**：若用户给的是名字/关键词而非 ID，先调 `mcp__flowmax-ops__list_pm_agents`（传 `q`）找到对应 PM 的 `id`。找不到就如实告知并列出近似结果让用户确认。
+1. **确定 PM agent ID**：若用户给的是名字/关键词而非 ID，先调 `mcp__timon__list_pm_agents`（传 `q`）找到对应 PM 的 `id`。找不到就如实告知并列出近似结果让用户确认。
 
-2. **拉绩效**：调 `mcp__flowmax-ops__pm_agent_stats`（`account_type`、`period_unit` 按需）。提取该 PM agent 的净盈亏、收益率、胜率、已平仓数。
+2. **拉绩效**：调 `mcp__timon__pm_agent_stats`（`account_type`、`period_unit` 按需）。提取该 PM agent 的净盈亏、收益率、胜率、已平仓数。
 
 3. **拉动作流水**（时间窗按用户要求，默认近 7 天）：
-   - `mcp__flowmax-ops__list_orders`（`pm_id`）
-   - `mcp__flowmax-ops__list_positions`（`pm_id`）
-   - `mcp__flowmax-ops__get_equity_curve`（`pm_id`）
+   - `mcp__timon__list_orders`（`pm_id`）
+   - `mcp__timon__list_positions`（`pm_id`）
+   - `mcp__timon__get_equity_curve`（`pm_id`）
 
-4. **拉最近决策**：调 `mcp__flowmax-ops__search_decisions`（`pm_id`）看决策状态分布。
+4. **拉最近决策**：调 `mcp__timon__search_decisions`（`pm_id`）看决策状态分布。
 
 ## 输出（Markdown 复盘报告）
 

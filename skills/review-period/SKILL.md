@@ -9,17 +9,17 @@ description: 复盘某时间段所有交易员的全局表现——谁决策最�
 
 ## 前置
 
-依赖 MCP server **`flowmax-ops`**。工具用全限定名 `mcp__flowmax-ops__<tool>`。
+依赖 MCP server **`timon`**。工具用全限定名 `mcp__timon__<tool>`。
 
 ## 步骤
 
 1. **确定时间窗**：把用户的时间表述转成 RFC3339 的 `start` / `end`（默认近 7 天）。
 
-2. **拉全局决策**：调 `mcp__flowmax-ops__search_decisions`（传 `start`/`end`，不传 `pm_id`）。可能需要翻页（`page`）取全。
+2. **拉全局决策**：调 `mcp__timon__search_decisions`（传 `start`/`end`，不传 `pm_id`）。可能需要翻页（`page`）取全。
 
-3. **拉目录**：调 `mcp__flowmax-ops__list_pm_agents` 拿到交易员名单（名称/交易所/标的）。
+3. **拉目录**：调 `mcp__timon__list_pm_agents` 拿到交易员名单（名称/交易所/标的）。
 
-4. **拉绩效**：调 `mcp__flowmax-ops__pm_agent_stats`（`period_unit` 按时间窗长度选 day/week/month）。每个 agent 除净盈亏/收益率/胜率外，还含 `trading_volume`（交易额）、`total_fee`（手续费）、`max_drawdown`（最大回撤额）、`max_drawdown_pct`（最大回撤率）。
+4. **拉绩效**：调 `mcp__timon__pm_agent_stats`（`period_unit` 按时间窗长度选 day/week/month）。每个 agent 除净盈亏/收益率/胜率外，还含 `trading_volume`（交易额）、`total_fee`（手续费）、`max_drawdown`（最大回撤额）、`max_drawdown_pct`（最大回撤率）。
 
 ## 输出（Markdown 复盘报告）
 

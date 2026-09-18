@@ -9,11 +9,11 @@ description: 复盘单轮决策的完整链路——研究→决策→下单→�
 
 ## 前置
 
-依赖 MCP server **`flowmax-ops`**。工具用全限定名 `mcp__flowmax-ops__<tool>`。
+依赖 MCP server **`timon`**。工具用全限定名 `mcp__timon__<tool>`。
 
 ## 步骤
 
-1. 调 `mcp__flowmax-ops__get_round`，必填 `pm_id` 和 `round_id`。
+1. 调 `mcp__timon__get_round`，必填 `pm_id` 和 `round_id`。
 
 2. 从返回里拆解：
    - `decision`：原始决策内容（下单指令、仓位动作、置信度、风控区块）
